@@ -3,27 +3,27 @@ import 'package:flutter_test/flutter_test.dart';
 import '../lib/funcoes.dart';
 
 void main() {
-  var nome;
+  var cep;
   var cpf;
-  var idade;
+  var endereco;
 
   setUp(() {
-    nome = 'Matheus';
+    cep = '64004015';
     cpf = '56984525458';
-    idade = 120;
+    endereco = 'Rua Marechal Candido Rondom';
   });
 
-  group("Testes para a entidade Cliente", () {
-    test("Validar se a idade é menor que 130", () {
-      expect(Funcoes().verificarIdade(idade), true);
+  group("Testes para a entidade Endereço", () {
+    test("Validar se o Endereço é nulo ou é uma string vazia", () {
+      expect(Funcoes().validarEndereco(endereco), true);
     });
 
-    test("Verificar tamanho do nome", () {
-      expect(Funcoes().verificarTamanhoNome(nome), 7);
+    test("Verificar se o CEP existe", () {
+      expect(Funcoes().verificarSeCepExiste(cep), true);
     });
 
-    test("Validar o tamanho do CPF", () {
-      expect(Funcoes().verificarTamanhoCpf(cpf), 11);
+    test("Validar se o CEP é válido", () {
+      expect(Funcoes().validarCep(cep), true);
     });
   });
 }

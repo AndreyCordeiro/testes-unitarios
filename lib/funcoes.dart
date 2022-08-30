@@ -1,17 +1,22 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+
 class Funcoes {
-  int verificarTamanhoNome(String nome) {
-    return nome.length;
+  Future<bool> verificarSeCepExiste(String cep) async {
+    var dio = Dio();
+
+    final Response response =
+        await dio.get('https://viacep.com.br/ws/64004-015/json');
+    debugPrint(response.data);
+
+    return response.statusCode == 200;
   }
 
-  int verificarTamanhoCpf(String cpf) {
-    return cpf.length;
+  bool validarCep(String cep) {
+    return cep.length == 8;
   }
 
-  bool verificarIdade(int idade) {
-    if (idade < 130) {
-      return true;
-    } else {
-      return false;
-    }
+  bool validarEndereco(String endereco) {
+    return !(endereco.isEmpty || endereco == '');
   }
 }
